@@ -1,0 +1,337 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - name: TreasureMarketplace
+    kind: ethereum/contract
+    network: rinkeby
+    source:
+      address: "0xeadbc40f5176Fd6eAb8E63cDF55b9caBa216E682"
+      abi: TreasureMarketplace
+      startBlock: 9672376
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - ItemCanceled
+        - ItemListed
+        - ItemSold
+        - ItemUpdated
+      abis:
+        - name: ERC721
+          file: ./abis/721.json
+        - name: ERC1155
+          file: ./abis/1155.json
+        - name: TreasureMarketplace
+          file: ./abis/TreasureMarketplace.json
+      eventHandlers:
+        - event: ItemCanceled(address,address,uint256)
+          handler: handleItemCanceled
+        - event: ItemListed(address,address,uint256,uint256,uint256,uint256)
+          handler: handleItemListed
+        - event: ItemSold(address,address,address,uint256,uint256,uint256)
+          handler: handleItemSold
+        - event: ItemUpdated(address,address,uint256,uint256,uint256,uint256)
+          handler: handleItemUpdated
+        - event: UpdateFee(uint256)
+          handler: handleUpdateFee
+      file: ./src/mapping.ts
+  - name: Treasures
+    kind: ethereum/contract
+    network: rinkeby
+    source:
+      address: "0x61B468f85B2e50bAA0B1729ffC99eFe9EF0428f0"
+      abi: ERC1155
+      startBlock: 9570148
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - TransferBatch
+        - TransferSingle
+        - URI
+      abis:
+        - name: ERC1155
+          file: ./abis/1155.json
+      eventHandlers:
+        - event: TransferBatch(indexed address,indexed address,indexed address,uint256[],uint256[])
+          handler: handleTransferBatch
+        - event: TransferSingle(indexed address,indexed address,indexed address,uint256,uint256)
+          handler: handleTransferSingle
+        - event: URI(string,indexed uint256)
+          handler: handleURI
+      file: ./src/mappings/treasures.ts
+  - name: Seed of Life
+    kind: ethereum/contract
+    network: rinkeby
+    source:
+      address: "0x6A67fbf40142E3Db2e6a950A4D48B0EB41107cE8"
+      abi: ERC1155
+      startBlock: 9570148
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - TransferBatch
+        - TransferSingle
+        - URI
+      abis:
+        - name: ERC1155
+          file: ./abis/1155.json
+      eventHandlers:
+        - event: TransferBatch(indexed address,indexed address,indexed address,uint256[],uint256[])
+          handler: handleTransferBatch
+        - event: TransferSingle(indexed address,indexed address,indexed address,uint256,uint256)
+          handler: handleTransferSingle
+        - event: URI(string,indexed uint256)
+          handler: handleURI
+      file: ./src/mappings/seed-of-life.ts
+  - name: Legions
+    kind: ethereum/contract
+    network: rinkeby
+    source:
+      address: "0x6Fd12312f70fa5b04d66584600f39aBE31A99708"
+      abi: ERC1155
+      startBlock: 9570148
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - TransferBatch
+        - TransferSingle
+        - URI
+      abis:
+        - name: ERC1155
+          file: ./abis/1155.json
+      eventHandlers:
+        - event: TransferBatch(indexed address,indexed address,indexed address,uint256[],uint256[])
+          handler: handleTransferBatch
+        - event: TransferSingle(indexed address,indexed address,indexed address,uint256,uint256)
+          handler: handleTransferSingle
+        - event: URI(string,indexed uint256)
+          handler: handleURI
+      file: ./src/mappings/legions.ts
+  - name: Legions Genesis
+    kind: ethereum/contract
+    network: rinkeby
+    source:
+      address: "0xAC2F8732A67C15Bf81f8A6181364cE753E915037"
+      abi: ERC1155
+      startBlock: 9570148
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - TransferBatch
+        - TransferSingle
+        - URI
+      abis:
+        - name: ERC1155
+          file: ./abis/1155.json
+      eventHandlers:
+        - event: TransferBatch(indexed address,indexed address,indexed address,uint256[],uint256[])
+          handler: handleTransferBatch
+        - event: TransferSingle(indexed address,indexed address,indexed address,uint256,uint256)
+          handler: handleTransferSingle
+        - event: URI(string,indexed uint256)
+          handler: handleURI
+      file: ./src/mappings/legions-genesis.ts
+  - name: Keys
+    kind: ethereum/contract
+    network: rinkeby
+    source:
+      address: "0x25EE208B4F8636B5cEaAfdee051bf0BFE514f5f6"
+      abi: ERC1155
+      startBlock: 9570148
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - TransferBatch
+        - TransferSingle
+        - URI
+      abis:
+        - name: ERC1155
+          file: ./abis/1155.json
+      eventHandlers:
+        - event: TransferBatch(indexed address,indexed address,indexed address,uint256[],uint256[])
+          handler: handleTransferBatch
+        - event: TransferSingle(indexed address,indexed address,indexed address,uint256,uint256)
+          handler: handleTransferSingle
+        - event: URI(string,indexed uint256)
+          handler: handleURI
+      file: ./src/mappings/keys.ts
+  - name: Extra Life
+    kind: ethereum/contract
+    network: rinkeby
+    source:
+      address: "0x5e6ae51147d1eC18EdCCAe516A59fb0A26a0b48F"
+      abi: ERC1155
+      startBlock: 9570148
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - TransferBatch
+        - TransferSingle
+        - URI
+      abis:
+        - name: ERC1155
+          file: ./abis/1155.json
+      eventHandlers:
+        - event: TransferBatch(indexed address,indexed address,indexed address,uint256[],uint256[])
+          handler: handleTransferBatch
+        - event: TransferSingle(indexed address,indexed address,indexed address,uint256,uint256)
+          handler: handleTransferSingle
+        - event: URI(string,indexed uint256)
+          handler: handleURI
+      file: ./src/mappings/extra-life.ts
+  - name: Smol Brains
+    kind: ethereum/contract
+    network: rinkeby
+    source:
+      address: "0x4FeeA06250D9f315a6a454c9c8a7fcBCf8701210"
+      abi: ERC721
+      startBlock: 9673280
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Transfer
+      abis:
+        - name: ERC721
+          file: ./abis/721.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+      file: ./src/mappings/smol-brains.ts
+  - name: Smol Brains Land
+    kind: ethereum/contract
+    network: rinkeby
+    source:
+      address: "0xe42C57AB8E093d21e52cB07B5f32b1B106cDBfe4"
+      abi: ERC721
+      startBlock: 9673278
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Transfer
+      abis:
+        - name: ERC721
+          file: ./abis/721.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+      file: ./src/mappings/smol-brains-land.ts
+  - name: Smol Brains School
+    kind: ethereum/contract
+    network: rinkeby
+    source:
+      address: "0xA77bBE59169b159619074AD289344271f66CC69F"
+      abi: School
+      startBlock: 9673279
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Transfer
+      abis:
+        - name: School
+          file: ./abis/SmolBrainsSchool.json
+        - name: SmolBrains
+          file: ./abis/SmolBrains.json
+        - name: ERC721
+          file: ./abis/721.json
+      eventHandlers:
+        - event: DropSchool(uint256)
+          handler: handleDropSchool
+        - event: JoinSchool(uint256)
+          handler: handleJoinSchool
+      file: ./src/mappings/smol-brains.ts
+  - name: Smol Cars
+    kind: ethereum/contract
+    network: rinkeby
+    source:
+      address: "0x16BDf0B2D8Bb8E98AeCB32e004feBf9653DA5f43"
+      abi: SmolCars
+      startBlock: 9775903
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Transfer
+        - SmolCarMint
+      abis:
+        - name: SmolCars
+          file: ./abis/SmolCars.json
+        - name: ERC721
+          file: ./abis/721.json
+      eventHandlers:
+        - event: SmolCarMint(indexed address,uint256,string)
+          handler: handleMint
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+      file: ./src/mappings/smol-cars.ts
+  - name: Smol Bodies
+    kind: ethereum/contract
+    network: rinkeby
+    source:
+      address: "0x9e638BFe78B372b8f5CC63Cf6b01B90F568496cB"
+      abi: SmolBodies
+      startBlock: 9796413
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Transfer
+        - SmolBodiesMint
+      abis:
+        - name: SmolBodies
+          file: ./abis/SmolBodies.json
+        - name: ERC721
+          file: ./abis/721.json
+      eventHandlers:
+        - event: SmolBodiesMint(address,uint256,string)
+          handler: handleMint
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+      file: ./src/mappings/smol-bodies.ts
+  - name: Smol Bodies Gym
+    kind: ethereum/contract
+    network: rinkeby
+    source:
+      address: "0x67eDcba2b0D9cC0AB66eFa3447d03e3024C65956"
+      abi: Gym
+      startBlock: 9796412
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Transfer
+      abis:
+        - name: Gym
+          file: ./abis/SmolBodiesGym.json
+        - name: SmolBodies
+          file: ./abis/SmolBodies.json
+        - name: ERC721
+          file: ./abis/721.json
+      eventHandlers:
+        - event: DropGym(uint256,uint256,uint256)
+          handler: handleDropGym
+        - event: JoinGym(uint256)
+          handler: handleJoinGym
+      file: ./src/mappings/smol-bodies.ts
